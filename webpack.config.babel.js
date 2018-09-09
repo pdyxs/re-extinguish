@@ -8,7 +8,7 @@ export default {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'index.js',
-    library: 'react-library-starter',
+    library: 're-extinguish',
     libraryTarget: 'umd',
     umdNamedDefine: true,
   },
