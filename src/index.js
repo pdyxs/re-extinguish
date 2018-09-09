@@ -1,23 +1,25 @@
 import uuidv1 from 'uuid';
 import { buildUndoableContext } from './context';
 import UndoButtons from './UndoButtons';
-import connectUndo from './connect';
+import _connectUndo from './connect';
 import combiner from './combiner';
 import _ from 'lodash';
 
-export { buildUndoableContext, UndoButtons, connectUndo };
+export { buildUndoableContext, UndoButtons };
 
-export function undoables() {
+function undoables() {
   return combiner(_undoables);
 }
 
 var _undoables = [];
 var _owner = null;
 
-export default function Extinguish(owner, u) {
-  _owner = owner;
-  _undoables = _.concat(_undoables, u);
+export default function Extinguish({owner, specs}) {
+  if (owner) _owner = owner;
+  if (specs) _undoables = _.concat(_undoables, specs);
 }
+
+export let connectUndo = () => _connectUndo(_owner);
 
 const MAX_HISTORY = 20;
 

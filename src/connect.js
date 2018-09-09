@@ -11,6 +11,7 @@ import { connectFirestore } from '@pdyxs/re-connect-firebase';
 import { withName } from 'reramble';
 
 export default function connectUndo(owner) {
+  owner = owner || 'user';
   return checkIfPropsOrContextContains(
     {
       name: 'undo',
